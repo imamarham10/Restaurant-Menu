@@ -1,6 +1,7 @@
 package com.example.restaurantmenu
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -36,7 +37,7 @@ class MainActivity : AppCompatActivity() {
                     "Honey gets its sweetness from the monosaccharides fructose and glucose, and has about the same relative sweetness as sucrose (table sugar).It has attractive chemical properties for baking and a distinctive flavor when used as a sweetener.Most microorganisms do not grow in honey, so sealed honey does not spoil, even after thousands of years.")
         )
         //5
-        listOffood.add(food("Strawberry Ice cream",R.drawable.strawberry_ice_cream,"Strawberry ice cream is a flavor of ice cream made with strawberry or strawberry flavoring. It is made by blending in fresh strawberries or strawberry flavoring with the eggs, cream, vanilla and sugar used to make ice cream.Most strawberry ice cream is colored pink or light red. Strawberry ice cream dates back at least to 1813, when it was served at the second inauguration of James Madison.Along with vanilla and chocolate ice cream, strawberry is one of the three flavors in Neapolitan ice cream. Variations of strawberry ice cream include strawberry cheesecake ice cream and strawberry ripple ice cream, which is vanilla ice cream with a ribbon of strawberry jam or syrup. Some ice cream sandwiches are prepared neapolitan-style, and include strawberry ice cream."))
+        listOffood.add(food("Ice cream",R.drawable.strawberry_ice_cream,"Strawberry ice cream is a flavor of ice cream made with strawberry or strawberry flavoring. It is made by blending in fresh strawberries or strawberry flavoring with the eggs, cream, vanilla and sugar used to make ice cream.Most strawberry ice cream is colored pink or light red. Strawberry ice cream dates back at least to 1813, when it was served at the second inauguration of James Madison.Along with vanilla and chocolate ice cream, strawberry is one of the three flavors in Neapolitan ice cream. Variations of strawberry ice cream include strawberry cheesecake ice cream and strawberry ripple ice cream, which is vanilla ice cream with a ribbon of strawberry jam or syrup. Some ice cream sandwiches are prepared neapolitan-style, and include strawberry ice cream."))
         //6
         listOffood.add(food("Sugar Cube",R.drawable.sugar_cubes,"Sugar, shaped in cubes usually measuring about ~4 grams each, often used for coffee or tea. Sugar cubes can be created to look roughly the same size but contain reduced sugar content through a special production process.Additionally, they can contain a blend of acesulfame K and sugar, or a blend of acesulfame K, sugar, and aspartame"))
 
@@ -60,6 +61,13 @@ class MainActivity : AppCompatActivity() {
             val inflater = context!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             var foodView = inflater.inflate(R.layout.food_ticket,null)
             foodView.ivImage.setImageResource(food.image!!)
+            foodView.setOnClickListener {
+                val intent=Intent(context,Food_Detail::class.java)
+                intent.putExtra("name",food.name!!)
+                intent.putExtra("des",food.des!!)
+                intent.putExtra("image",food.image!!)
+                context!!.startActivity(intent)
+            }
             foodView.tvName.text = food.name!!
             return foodView
 
